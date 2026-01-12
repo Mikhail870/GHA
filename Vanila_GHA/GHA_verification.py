@@ -23,8 +23,6 @@ etha=1e-4 # learning rate
 epoch=50
 n=20_000
 NMSE=np.zeros((k,epoch))
-#nmse=np.zeros(n*epoch)
-#count=0
 
 
 ############## generate n dimensional gaussian distribution ###################
@@ -46,9 +44,7 @@ for e in range(epoch):
       x=matrix[i]
       y=np.einsum('ij,j->i',weigth , x)
       weigth+=etha*(np.einsum('i,j->ij', y, x)-np.einsum('j,k,ki,jk->ji', y, y, weigth, mask))
-      #l=np.var(np.dot(weigth[1],matrix.T),ddof=1)                              ####
-      #nmse[count]=np.mean((l-eigval_sorted[1])**2)/eigval_sorted[1]**2         #### NMSE
-      #count+=1                                                                 ####
+
     projections=np.dot(weigth,matrix.T)
     lambdas=np.var(np.dot(weigth,matrix.T),axis=1,ddof=1)
 
@@ -56,8 +52,7 @@ for e in range(epoch):
       NMSE[index,e]=((eigval_sorted[index]-lambdas[index])**2)/(eigval_sorted[index]**2)
     
 
-# plt.plot(10*np.log10(nmse))
-# plt.show()
+
 
 
 ############## plot NMSE/epoch & eigvalues/epoch ###################

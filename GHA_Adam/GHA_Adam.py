@@ -64,9 +64,7 @@ for e in range(epoch):
       update_param=alpha*m_est/(np.sqrt(u_est)+eps)
       # Update weights
       weigth=weigth+update_param
-      l=np.var(np.dot(weigth[1],matrix.T),ddof=1)                              ####
-      nmse[count]=np.mean((l-eigval_sorted[1])**2)/eigval_sorted[1]**2         #### NMSE
-      count+=1                                                                 ####
+   
       
     projections=np.dot(weigth,matrix.T)
     lambdas=np.var(projections,axis=1,ddof=1)
@@ -76,8 +74,7 @@ for e in range(epoch):
 
 
 
-plt.plot(10*np.log10(nmse))
-plt.show()
+
 
 ############## plot NMSE/epoch & eigvalues/epoch ###################
 for i in range(k):
