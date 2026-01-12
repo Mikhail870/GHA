@@ -20,7 +20,7 @@ y=np.zeros((m),dtype=float64)
 
 ############## init parameters ###################
 etha=1e-4 # learning rate
-epoch=2
+epoch=50
 n=20_000
 NMSE=np.zeros((k,epoch))
 nmse=np.zeros(n*epoch)
@@ -72,7 +72,9 @@ for e in range(epoch):
       NMSE[index,e]=((eigval_sorted[index]-lambdas[index])**2)/(eigval_sorted[index]**2)
 
 
-
+#print all NMSE
+for index in range(k):
+  print(f'NMSE {10*np.log10(np.sum(NMSE[index,:]))} dB of {index+1} eigenvalue per {epoch} epoch')
 
 
 

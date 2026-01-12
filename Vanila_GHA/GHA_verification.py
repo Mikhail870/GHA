@@ -54,6 +54,10 @@ for e in range(epoch):
 
 
 
+#print all NMSE
+for index in range(k):
+  print(f'NMSE {10*np.log10(np.sum(NMSE[index,:]))} dB of {index+1} eigenvalue per {epoch} epoch')
+
 
 ############## plot NMSE/epoch & eigvalues/epoch ###################
 for i in range(k):
