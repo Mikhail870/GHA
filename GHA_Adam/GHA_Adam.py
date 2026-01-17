@@ -56,7 +56,7 @@ for e in range(epoch):
       y=np.einsum('ij,j->i',weigth , x)
       # Adam
       t+=1
-      g_t=(np.einsum('i,j->ij', y, x)-np.einsum('j,k,ki,jk->ji', y, y, weigth, mask))
+      g_t=(np.einsum('j,i>ji', y, x)-np.einsum('j,k,ki,jk->ji', y, y, weigth, mask))
       m_t=betha_1*m_t+(1-betha_1)*g_t
       u_t=betha_2*u_t+(1-betha_2)*g_t**2
       m_est=m_t/(1-betha_1**t)

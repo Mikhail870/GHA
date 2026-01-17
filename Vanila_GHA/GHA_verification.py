@@ -43,7 +43,7 @@ for e in range(epoch):
     for i in range(n):
       x=matrix[i]
       y=np.einsum('ij,j->i',weigth , x)
-      weigth+=etha*(np.einsum('i,j->ij', y, x)-np.einsum('j,k,ki,jk->ji', y, y, weigth, mask))
+      weigth+=etha*(np.einsum('j,i->ji', y, x)-np.einsum('j,k,ki,jk->ji', y, y, weigth, mask))
 
     projections=np.dot(weigth,matrix.T)
     lambdas=np.var(np.dot(weigth,matrix.T),axis=1,ddof=1)
